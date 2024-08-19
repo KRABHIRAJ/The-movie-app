@@ -13,7 +13,6 @@ function Layout() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log('auth state changed user >>', user);
         const {uid, email, displayName, photoURL} = user;
         dispatch(setCurrentUser({
           uid:uid,
@@ -32,7 +31,7 @@ function Layout() {
     return () => unsubscribe();
   }, [])
   return (
-    <div className="relative">
+    <div className="relative overflow-x-hidden">
       <Header />
       <Outlet />
     </div>

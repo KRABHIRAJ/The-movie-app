@@ -20,7 +20,6 @@ function Login() {
   const handleFormSubmit = () => {
     let errorMessage;
     if(!isSigninPage){
-      console.log('In if');
       errorMessage = validateInputs(fullName.current.value, email.current.value, password.current.value, true);
     }else{
       errorMessage = validateInputs('', email.current.value, password.current.value);
@@ -34,14 +33,12 @@ function Login() {
   }
 
   const createNewUser = () => {
-    console.log('Signup user');
     createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
       .then((userCredential) => {
         const user = userCredential.user;
         updateProfile(user, {
           displayName: fullName.current.value, photoURL: AVATAR_URL
         }).then(() => {
-          console.log('Updated user >>', auth.currentUser);
           
           const { uid, email, displayName, photoURL } = auth.currentUser;
           dispatch(setCurrentUser({
@@ -66,6 +63,7 @@ function Login() {
     .then((userCredential) => {
       const user = userCredential.user;
       console.log('Logged in user >>', user);
+      
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -74,11 +72,6 @@ function Login() {
     });
   }
 
-  // const updateProfile = (user) => {
-  //   console.log('Update Profile >>', user);
-
-    
-  // }
 
   return (
     <div className="absolute top-0">
