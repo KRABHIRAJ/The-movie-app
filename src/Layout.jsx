@@ -31,7 +31,7 @@ function Layout() {
     return () => unsubscribe();
   }, [])
   return (
-    <div className="relative overflow-x-hidden">
+    <div className="relative">
       <Header />
       <Outlet />
     </div>

@@ -20,7 +20,7 @@ function Header() {
   }
   return (
     <div className="w-screen">
-      <div className="w-full m-auto z-[10] px-10 absolute top-0 flex justify-between items-center">
+      <div className="w-full m-auto z-[100] px-10 fixed bg-black top-0 flex justify-center sm:justify-between items-center">
           <img 
               src={LOGO_URL}
               alt="app-logo"
@@ -28,7 +28,7 @@ function Header() {
               className="z-[10] cursor-pointer"
           />
           {
-            Object.keys(user).length > 0 && <div onClick={logout} className="z-[100]">
+            Object.keys(user).length > 0 && <div onClick={logout} className="z-[100] hidden sm:flex">
               <button className="px-4 py-2 text-white bg-[#E40914] text-center rounded-lg font-[500]">Sign out</button>
             </div>
           }

@@ -10,7 +10,7 @@ function Browse() {
   useFetchMovieDetails(POPULAR_URL, setPopularMovies);
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <MainContainer />
       <SecondaryContainer />
     </div>
