@@ -6,6 +6,10 @@ import Login from "./Login";
 import Header from "./common/Header";
 import HeaderBar from "./common/HeaderBar";
 import SearchBar from "./common/SearchBar";
+import TvShow from './discover/TvShow'
+import DiscoverMoviesAndShows from './discover/DiscoverMoviesAndShows'
+import MovieCard from "./browse/MovieCard";
+import DiscoverMovie from "./discover/DiscoverMovie";
 
 export {
     Login,
@@ -15,5 +19,11 @@ export {
     MainContainer,
     SecondaryContainer,
     HeaderBar,
-    SearchBar
+    SearchBar,
+    TvShow,
+    DiscoverMoviesAndShows,
+    MovieCard,
+    DiscoverMovie,
 }
+
+

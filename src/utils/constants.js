@@ -14,6 +14,14 @@ export const NOW_PLAYING_URL = 'https://api.themoviedb.org/3/movie/now_playing?l
 export const POPULAR_URL = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
 export const TOP_RATED_URL = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
 
+
+export const DISCOVER_TV_SHOW_URL = (page) =>  {
+    return `https://api.themoviedb.org/3/discover/tv?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_original_language=hi&with_watch_providers=8&watch_region=IN`
+}
+export const DISCOVER_MOVIE_URL =  (page) => {
+    return `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_original_language=hi`;
+}
+
 export const getVideoUrl = (movieId) => {
     return `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`;
 }
@@ -25,6 +33,8 @@ export const getYoutubeUrl = (key) => {
 export const getImageCdnUrl = (size, path) => {
     return `https://image.tmdb.org/t/p/${size}${path}`
 }
+
+
 
 export const validateInputs = (name, email, password, isSignUp = false) => {
 
