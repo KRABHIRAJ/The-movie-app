@@ -1,5 +1,5 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
-import { Browse, DiscoverMovie, Login, TvShow } from "../components";
+import { Browse, DiscoverMovie, Login, SearchPage, TvShow } from "../components";
 import Layout from "../Layout";
 
 const router = createBrowserRouter(
@@ -9,6 +9,7 @@ const router = createBrowserRouter(
             <Route path="/browse" element={<Browse />} />
             <Route path="/tv" element={<TvShow />} />
             <Route path="/movie" element={<DiscoverMovie />} />
+            <Route path="/search" element={<SearchPage />} />
         </Route>
     )
 )

@@ -7,6 +7,7 @@ const initialState = {
   topRatedMovies: [],
   discoverMovie: [],
   discoverTvSeries: [],
+  searchData:[],
 };
 
 const movieSlice = createSlice({
@@ -31,6 +32,9 @@ const movieSlice = createSlice({
     setDiscoverTvSeries: (state, action) => {
       state.discoverTvSeries = [...action.payload];
     },
+    setSearchData: (state, action) => {
+        state.searchData = [...action.payload];
+    }
   },
 });
 
@@ -41,6 +45,7 @@ export const {
   setTopRatedMovies,
   setDiscoverMovie,
   setDiscoverTvSeries,
+  setSearchData,
 } = movieSlice.actions;
 
 export default movieSlice.reducer;

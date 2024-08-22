@@ -10,6 +10,7 @@ import TvShow from './discover/TvShow'
 import DiscoverMoviesAndShows from './discover/DiscoverMoviesAndShows'
 import MovieCard from "./browse/MovieCard";
 import DiscoverMovie from "./discover/DiscoverMovie";
+import SearchPage from "./common/SearchPage";
 
 export {
     Login,
@@ -24,6 +25,7 @@ export {
     DiscoverMoviesAndShows,
     MovieCard,
     DiscoverMovie,
+    SearchPage,
 }
 
 

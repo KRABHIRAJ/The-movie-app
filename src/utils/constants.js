@@ -21,6 +21,11 @@ export const DISCOVER_TV_SHOW_URL = (page) =>  {
 export const DISCOVER_MOVIE_URL =  (page) => {
     return `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_original_language=hi`;
 }
+export const SEARCH_MOVIE_URL = (query) => {
+    return `https://api.themoviedb.org/3/search/multi?query=${query}&include_adult=false&language=en-US&page=1`
+}
+
+
 
 export const getVideoUrl = (movieId) => {
     return `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`;

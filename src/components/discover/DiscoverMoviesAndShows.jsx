@@ -9,7 +9,7 @@ const DiscoverMoviesAndShows = ({movies}) => {
     <div className="bg-black mt-[62px] p-4 grid grid-cols-3 md:grid-cols-5 gap-4 justify-center">
         {
             movies.map((movie) => {
-              return movie?.poster_path === null ? null : 
+              return ((movie?.profile_path == null && movie?.poster_path===null) || movie?.poster_path === null) ? null : 
                  <div className="flex justify-center" key={movie?.id}>
                     <MovieCard  movie={movie}/>
                 </div>

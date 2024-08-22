@@ -1,12 +1,28 @@
 import { useState } from "react";
 import SearchIcon from '@mui/icons-material/Search';
+import { SEARCH_MOVIE_URL, TMDB_API_OPTIONS } from "../../utils/constants";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchData } from "../../store/movieSlice";
+import { toggleSidebarStatus } from "../../store/userSlice";
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const search = () => {
-    console.log('Searched');
-    
+  const isSidebarOpen = useSelector((state) => state.user.isSidebarOpen);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const search = async () => {
+    isSidebarOpen && dispatch(toggleSidebarStatus());
+    if(searchQuery.length === 0) return;
+
+    const url = SEARCH_MOVIE_URL(searchQuery);
+    const res = await fetch(url, TMDB_API_OPTIONS);
+    const movieData = await res.json();  
+    dispatch(setSearchData(movieData?.results));
+    navigate('/search');
   }
+
   const searchSubmit = (e) => {
     e.preventDefault();
     search();
