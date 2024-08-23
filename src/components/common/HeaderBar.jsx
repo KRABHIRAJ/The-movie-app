@@ -1,16 +1,16 @@
 import LogoutIcon from "@mui/icons-material/Logout";
-import logOut from "../../utils/functions/logOut";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { SearchBar } from "../index";
 import { toggleSidebarStatus } from "../../store/userSlice";
+import {logOutUser} from "../../utils/appwrite";
 
 const HeaderBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const userLogOut = () => {
-    logOut(dispatch, navigate);
+    logOutUser(dispatch,navigate);
     dispatch(toggleSidebarStatus())
   };
   return (

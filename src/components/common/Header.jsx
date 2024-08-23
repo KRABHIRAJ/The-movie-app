@@ -7,7 +7,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from '@mui/icons-material/Menu';
 import {HeaderBar, SearchBar} from "../index";
 import CloseIcon from '@mui/icons-material/Close';
-import logOut from "../../utils/functions/logOut";
+import { logOutUser } from "../../utils/appwrite";
 
 
 function Header() {
@@ -23,7 +23,7 @@ function Header() {
    
 
   const userLogOut = () => {
-    logOut(dispatch, navigate);
+    logOutUser(dispatch,navigate);
   };
 
   

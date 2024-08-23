@@ -11,6 +11,7 @@ import DiscoverMoviesAndShows from './discover/DiscoverMoviesAndShows'
 import MovieCard from "./browse/MovieCard";
 import DiscoverMovie from "./discover/DiscoverMovie";
 import SearchPage from "./common/SearchPage";
+import ProtectedRoute from "./ProtectedRoute";
 
 export {
     Login,
@@ -26,6 +27,7 @@ export {
     MovieCard,
     DiscoverMovie,
     SearchPage,
+    ProtectedRoute,
 }
 
 

@@ -1,9 +1,8 @@
 import { useRef, useState } from "react";
-import { AVATAR_URL, BGIMAGE_URL, validateInputs } from "../utils/constants";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { BGIMAGE_URL, validateInputs } from "../utils/constants";
 import { useDispatch } from "react-redux";
-import { setCurrentUser } from "../store/userSlice";
+import { createAccount, logInUser } from "../utils/appwrite";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [isSigninPage, setIsSigninPage] = useState(true);
@@ -12,6 +11,7 @@ function Login() {
   const fullName = useRef();
   const [errorMsg, setErrorMsg] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
 
   const togglePageType = () => {
@@ -33,43 +33,11 @@ function Login() {
   }
 
   const createNewUser = () => {
-    createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        updateProfile(user, {
-          displayName: fullName.current.value, photoURL: AVATAR_URL
-        }).then(() => {
-          
-          const { uid, email, displayName, photoURL } = auth.currentUser;
-          dispatch(setCurrentUser({
-            uid:uid,
-            displayName: displayName,
-            photoURL: photoURL,
-            email: email
-          }))
-        }).catch((error) => {
-          console.warn(`Error while Updating profile: ` , error);
-        });
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        setErrorMsg(`${errorCode} - ${errorMessage}`);
-      });
+    createAccount(fullName.current.value, email.current.value, password.current.value, dispatch, navigate, setErrorMsg);
   }
 
   const signInUser = () => {
-    signInWithEmailAndPassword(auth, email.current.value, password.current.value)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log('Logged in user >>', user);
-      
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      setErrorMsg(`${errorCode} - ${errorMessage}`);
-    });
+    logInUser(email.current.value, password.current.value, dispatch, navigate, setErrorMsg);
   }
 
 
