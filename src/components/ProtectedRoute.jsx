@@ -1,9 +1,22 @@
+
+import { useEffect } from "react";
 import { useSelector } from "react-redux"
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 const ProtectedRoute = () => {
+    const location = useLocation();
     const user = useSelector((state) => state.user.user);
-    return Object.keys(user).length > 0 ? <Outlet /> : <Navigate to="/" />
+    const isAuthenticated = Object.keys(user).length > 0;
+
+    useEffect(() => {
+        localStorage.setItem('redirectAfterLogin', location.pathname)
+    });
+
+   
+   
+    
+
+    return isAuthenticated ? <Outlet /> : <Navigate to="/" />
 }
 
 export default ProtectedRoute

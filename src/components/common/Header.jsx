@@ -5,10 +5,10 @@ import { LOGO_URL } from "../../utils/constants";
 import useGetIsMobileView from "../../utils/hooks/useGetIsMobileView";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from '@mui/icons-material/Menu';
-import {HeaderBar, SearchBar} from "../index";
+import {HeaderBar, HeaderMenuItem, SearchBar} from "../index";
 import CloseIcon from '@mui/icons-material/Close';
-import { logOutUser } from "../../utils/appwrite";
-
+import { logOutUser, sendVerificationEmail } from "../../utils/appwrite";
+import WarningIcon from '@mui/icons-material/Warning';
 
 function Header() {
   const dispatch = useDispatch();
@@ -46,25 +46,27 @@ function Header() {
 
         {
           (!isMobileView && (Object.keys(user).length > 0) && (
-            <div className="z-[100] flex items-center gap-x-4 flex-[0.5] justify-end">
+            <div className="z-[100] flex items-center gap-x-4 flex-[0.7] justify-end">
+              {
+                !user?.emailVerification && <div onClick={sendVerificationEmail} className="flex items-center gap-x-[1px]">
+                <WarningIcon sx={{ color: '#F6C301', fontSize: '20px', fontWeight: '600' }} />
+                <HeaderMenuItem title='Verify Email'/>
+              </div>
+              }
+              
               <div>
                 <SearchBar />
               </div>
               <Link to="/movie">
-                <p className="relative inline-block text-gray-300 transition-all duration-300 ease-in-out hover:text-white cursor-pointer font-[500] group">
-                  Movies
-                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-300 ease-in-out group-hover:w-full"></span>
-                </p>
+                <HeaderMenuItem title='Movie' />
               </Link>
               <Link to="/tv">
-                <p className="relative inline-block text-gray-300 transition-all duration-300 ease-in-out hover:text-white cursor-pointer font-[500] group">
-                  TV Shows
-                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-white transition-all duration-300 ease-in-out group-hover:w-full"></span>
-                </p>
+                <HeaderMenuItem title='TV Shows' />
               </Link>
               <button onClick={userLogOut} className="px-2 pb-1 text-white bg-[#E40914] hover:bg-[#ed5b63] transition-all duration-300 text-center rounded-lg">
                 <LogoutIcon fontSize="14" />
               </button>
+              
             </div>
           ))
         } 

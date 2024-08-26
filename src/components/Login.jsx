@@ -24,7 +24,6 @@ function Login() {
     }else{
       errorMessage = validateInputs('', email.current.value, password.current.value);
     }
-    console.log('errorMessage >>', errorMessage);
     setErrorMsg(errorMessage);
     if(!errorMessage){
       isSigninPage ? signInUser() : createNewUser();

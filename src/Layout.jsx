@@ -8,13 +8,16 @@ import { getCurrentUser } from "./utils/appwrite";
 function Layout() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  
   const getUser = async () => {
     const user = await getCurrentUser();
 
     if (user) {
       dispatch(setCurrentUser(user));
-      navigate("/browse");
+      const visitedRoute = localStorage.getItem('redirectAfterLogin');
+      const redirectTo = visitedRoute || '/browse';
+      navigate(redirectTo);
+      localStorage.setItem('redirectAfterLogin', '');
     } else {
       // User is signed out
       dispatch(removeUser());

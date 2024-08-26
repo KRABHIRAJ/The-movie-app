@@ -7,8 +7,6 @@ import {DiscoverMoviesAndShows} from "../index"
 const TvShow = () => {
   const tvSeriesData = useSelector((state) => state.movie.discoverTvSeries)
   const url = DISCOVER_TV_SHOW_URL(1);
-  console.log(url);
-  
   useFetchMovieDetails(url, setDiscoverTvSeries, tvSeriesData)
 
   return (

@@ -12,6 +12,8 @@ import MovieCard from "./browse/MovieCard";
 import DiscoverMovie from "./discover/DiscoverMovie";
 import SearchPage from "./common/SearchPage";
 import ProtectedRoute from "./ProtectedRoute";
+import VerifyUser from "./VerifyUser";
+import HeaderMenuItem from "./common/HeaderMenuItem";
 
 export {
     Login,
@@ -28,6 +30,9 @@ export {
     DiscoverMovie,
     SearchPage,
     ProtectedRoute,
+    VerifyUser,
+    HeaderMenuItem
+
 }
 
 

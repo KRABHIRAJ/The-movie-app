@@ -1,6 +1,6 @@
 import { account } from "./appwrite";
 import {  ID } from "appwrite";
-import logInUser from "./logInUser";
+import {logInUser} from "./index";
 const createAccount = async (name, email, password, dispatch, navigate, setErrorMsg) => {
     try{
         const response = await account.create(ID.unique(), email, password, name);

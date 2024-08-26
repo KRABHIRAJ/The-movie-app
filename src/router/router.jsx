@@ -1,11 +1,12 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
-import { Browse, DiscoverMovie, Login, ProtectedRoute, SearchPage, TvShow } from "../components";
+import { Browse, DiscoverMovie, Login, ProtectedRoute, SearchPage, TvShow, VerifyUser } from "../components";
 import Layout from "../Layout";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<Layout />}>
             <Route path="" element={<Login />} />
+            <Route path="/verify" element={<VerifyUser />} />
             <Route element={<ProtectedRoute />}> 
                 <Route path="/browse" element={<Browse />} />
                 <Route path="/tv" element={<TvShow />} />

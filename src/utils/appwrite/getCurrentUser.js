@@ -1,8 +1,8 @@
-import { accountWithEndPoint } from "./appwrite";
+import { account } from "./appwrite";
 
 const getCurrentUser = async () => {
     try{
-        const response =  await accountWithEndPoint.get();
+        const response =  await account.get();
         return response;
 
     }catch(err){
