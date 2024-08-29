@@ -7,7 +7,7 @@ const getRecoveryCode = async (dispatch) => {
         const response = await account.createMfaRecoveryCodes();
         let recoveryCode = '';
         response?.recoveryCodes?.map((code) => {
-            recoveryCode += code
+            recoveryCode += code + " "
         })
         dispatch(setRecoveryCode(recoveryCode));
         enableMFA();
