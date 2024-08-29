@@ -2,8 +2,7 @@ import { account } from "./appwrite";
 
 const enableMFA = async () => {
     try{
-        const result = await account.updateMFA(true);
-        console.log('Enabled MFA >>', result);
+        await account.updateMFA(true);
         
     }catch(err){
         console.log('Err while enabling MFA: ', err.message);

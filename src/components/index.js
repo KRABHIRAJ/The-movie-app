@@ -14,8 +14,10 @@ import SearchPage from "./common/SearchPage";
 import ProtectedRoute from "./ProtectedRoute";
 import VerifyUser from "./VerifyUser";
 import HeaderMenuItem from "./common/HeaderMenuItem";
-
+import RecoveryCodeModal from "./common/RecoveryCodeModal";
+import MultiFactorInput from "./MultiFactorInput";
 export {
+    MultiFactorInput,
     Login,
     Browse,
     Header,
@@ -31,8 +33,8 @@ export {
     SearchPage,
     ProtectedRoute,
     VerifyUser,
-    HeaderMenuItem
-
+    HeaderMenuItem,
+    RecoveryCodeModal,
 }
 
 

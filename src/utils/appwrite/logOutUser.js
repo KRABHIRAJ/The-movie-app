@@ -3,10 +3,12 @@ import { account } from "./appwrite";
 
 const logOutUser = async (dispatch, navigate) => {
     try{
-        const response = await account.deleteSession('current');
+        // const response = await account.deleteSession('current');
+        const response = await account.deleteSessions();
         dispatch(removeUser());
         navigate('/');
-        console.log('Account Loggedout >>', response);
+        console.log('Loggedout : ', response);
+        
      }catch(err){
         console.log(`Err while logging out: `, err.message);
     }

@@ -1,13 +1,10 @@
 import { useEffect } from "react"
 import { account } from "../utils/appwrite/appwrite";
-import { enableMFA } from "../utils/appwrite";
 
 const VerifyUser = () => {
     const updateUserVerification = async (userId, secret) => {
         try{
-            const response = await account.updateVerification(userId, secret);
-            console.log('User verified >>', response);
-            enableMFA();
+            await account.updateVerification(userId, secret);
         }catch(err){
             console.log('Err while updating verification : ', err.message)
         }

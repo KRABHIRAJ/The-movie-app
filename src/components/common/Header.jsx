@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { toggleSidebarStatus } from "../../store/userSlice";
+import { setIsRecoveryModalOpen, toggleSidebarStatus } from "../../store/userSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { LOGO_URL } from "../../utils/constants";
 import useGetIsMobileView from "../../utils/hooks/useGetIsMobileView";
@@ -7,7 +7,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from '@mui/icons-material/Menu';
 import {HeaderBar, HeaderMenuItem, SearchBar} from "../index";
 import CloseIcon from '@mui/icons-material/Close';
-import { logOutUser, sendVerificationEmail } from "../../utils/appwrite";
+import { getRecoveryCode, logOutUser, sendVerificationEmail } from "../../utils/appwrite";
 import WarningIcon from '@mui/icons-material/Warning';
 
 function Header() {
@@ -26,7 +26,10 @@ function Header() {
     logOutUser(dispatch,navigate);
   };
 
-  
+  const openMultiFactModal = () => {
+      getRecoveryCode(dispatch);
+      dispatch(setIsRecoveryModalOpen(true));
+  }
 
   const toggleSidebar = () => {
     dispatch(toggleSidebarStatus());
@@ -51,6 +54,12 @@ function Header() {
                 !user?.emailVerification && <div onClick={sendVerificationEmail} className="flex items-center gap-x-[1px]">
                 <WarningIcon sx={{ color: '#F6C301', fontSize: '20px', fontWeight: '600' }} />
                 <HeaderMenuItem title='Verify Email'/>
+              </div>
+              }
+              {
+                (user?.emailVerification && !user.mfa) && <div onClick={openMultiFactModal} className="flex items-center gap-x-[1px]">
+                <WarningIcon sx={{ color: '#F6C301', fontSize: '20px', fontWeight: '600' }} />
+                <HeaderMenuItem title='Enable MFA'/>
               </div>
               }
               

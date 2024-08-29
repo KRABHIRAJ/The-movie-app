@@ -1,20 +1,34 @@
-import { setCurrentUser } from "../../store/userSlice";
+import { setIsMfaRequired } from "../../store/userSlice";
+import saveCurrentUser from "../functions/saveCurrentUser";
 import { account } from "./appwrite";
+import createEmailChallenge from "./createEmailChallenge";
+import getCurrentUser from "./getCurrentUser";
+
+const performMFA = (dispatch) => {
+    createEmailChallenge(dispatch);
+    dispatch(setIsMfaRequired(true));
+}
 
 const logInUser = async (email, password, dispatch, navigate, setErrorMsg) => {
     
     try{
-        const response = await account.createEmailPasswordSession(email, password);
-        dispatch(setCurrentUser(response));
-        const visRoute = localStorage.getItem('redirectAfterLogin');
-        const redirectTo = visRoute || '/browse';
-        navigate(redirectTo);
-        localStorage.setItem('redirectAfterLogin', '');
-        console.log('Account Loggedin >>', response);
+        await account.createEmailPasswordSession(email, password);
+        const user = await getCurrentUser();
+        if(user){
+            saveCurrentUser(dispatch, navigate, user);
+        }else{
+            performMFA(dispatch);
+        }
         
     }catch(err){
-        setErrorMsg(err.message);
-        console.log(`Err while signin: `, err.message);
+        if (err.type === `user_more_factors_required`){
+            // redirect to perform MFA
+            performMFA(dispatch);
+        }
+        else {
+            setErrorMsg(err.message);
+            console.log(`Err while signin: `, err.message);
+        }
     }
 }
 

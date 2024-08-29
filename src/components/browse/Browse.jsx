@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { setNowPlayingMovies, setPopularMovies, setTopRatedMovies, setTrendingMovies } from "../../store/movieSlice"
 import { NOW_PLAYING_URL, POPULAR_URL, TOP_RATED_URL, TRENDING_MOVIES_URL } from "../../utils/constants"
 import useFetchMovieDetails from "../../utils/hooks/useFetchMovieDetails"
-import {MainContainer, SecondaryContainer} from "../index";
+import {MainContainer, RecoveryCodeModal, SecondaryContainer} from "../index";
 
 function Browse() {
   const nowPlayingMovies = useSelector((state) => state.movie.nowPlayingMovies);
@@ -18,6 +18,7 @@ function Browse() {
     <div className="overflow-x-hidden">
       <MainContainer />
       <SecondaryContainer />
+      <RecoveryCodeModal />
     </div>
   )
 }
