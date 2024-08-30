@@ -1,4 +1,5 @@
 import { setIsMfaRequired } from "../../store/userSlice";
+import deleteAllActiveSession from "../functions/deleteAllActiveSession";
 import saveCurrentUser from "../functions/saveCurrentUser";
 import { account } from "./appwrite";
 import createEmailChallenge from "./createEmailChallenge";
@@ -9,12 +10,15 @@ const performMFA = (dispatch) => {
     dispatch(setIsMfaRequired(true));
 }
 
+
+
 const logInUser = async (email, password, dispatch, navigate, setErrorMsg) => {
-    
     try{
-        await account.createEmailPasswordSession(email, password);
+        const response = await account.createEmailPasswordSession(email, password);
+        const activeId = response.$id;
         const user = await getCurrentUser();
         if(user){
+            await deleteAllActiveSession(activeId);
             saveCurrentUser(dispatch, navigate, user);
         }else{
             performMFA(dispatch);
